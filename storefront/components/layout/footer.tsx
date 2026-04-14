@@ -6,26 +6,26 @@ import { usePolicies } from '@/hooks/use-policies'
 
 const footerLinks = {
   shop: [
-    { label: 'All Products', href: '/products' },
+    { label: 'All Candles', href: '/products' },
     { label: 'New Arrivals', href: '/products?sort=newest' },
     { label: 'Collections', href: '/collections' },
+    { label: 'Gift Sets', href: '/products?q=gift' },
   ],
   help: [
-    { label: 'FAQ', href: '/faq' },
+    { label: 'Candle Care Guide', href: '/faq' },
     { label: 'Shipping & Returns', href: '/shipping' },
     { label: 'Contact Us', href: '/contact' },
+    { label: 'FAQ', href: '/faq' },
   ],
 }
 
 export default function Footer() {
   const { policies } = usePolicies()
 
-  // Build company links dynamically based on available policies
   const companyLinks = [
-    { label: 'About', href: '/about' },
+    { label: 'Our Story', href: '/about' },
   ]
 
-  // Add policy links only if they're set in the admin
   if (policies?.privacy_policy) {
     companyLinks.push({ label: 'Privacy Policy', href: '/privacy' })
   }
@@ -40,20 +40,26 @@ export default function Footer() {
   }
 
   return (
-    <footer className="border-t bg-muted/30">
+    <footer className="border-t bg-[hsl(36,25%,94%)]">
       <div className="container-custom py-section-sm">
         {/* Main Footer */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center gap-2">
+              <span className="text-xl">🕯️</span>
               <span className="font-heading text-2xl font-semibold">
-                Store
+                Lumière
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Curated products crafted with care. Quality you can feel, design you can see.
+              Hand-poured soy candles crafted in small batches. 100% natural ingredients,
+              premium fragrances, and burn times up to 60 hours.
             </p>
+            <div className="mt-5 flex gap-4">
+              <a href="#" aria-label="Instagram" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Instagram</a>
+              <a href="#" aria-label="Pinterest" className="text-muted-foreground hover:text-foreground transition-colors text-sm">Pinterest</a>
+            </div>
           </div>
 
           {/* Shop Links */}
@@ -96,13 +102,21 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+
+            {/* Candle Care tip */}
+            <div className="mt-8 p-4 bg-muted/60 rounded-sm border">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1">🕯️ Candle Tip</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Trim your wick to 5mm before each burn for a cleaner, longer flame.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Store. All rights reserved.
+            &copy; {new Date().getFullYear()} Lumière Candles. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <button
